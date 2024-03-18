@@ -1,16 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { GifsService } from '../../../gifs/services/gifs.service';
 
 @Component({
   selector: 'search-box',
   standalone: true,
   template: `
-    <form>
-      <input
-        type="text"
-        class="form-control my-2"
-        placeholder="Search Gifs..."
-      />
-    </form>
+    <input
+      type="text"
+      class="form-control my-2"
+      placeholder="Search Gifs..."
+      (keyup.enter)="searchTag()"
+      #newTag
+    />
   `,
 })
-export class SearchBoxComponent {}
+export class SearchBoxComponent {
+  @ViewChild('newTag')
+  public newTag!: ElementRef<HTMLInputElement>;
+
+  constructor(private gifsService: GifsService) {}
+
+  searchTag() {
+    const newTag = this.newTag.nativeElement.value;
+
+    this.gifsService.searchTag(newTag);
+    this.newTag.nativeElement.value = '';
+  }
+}
