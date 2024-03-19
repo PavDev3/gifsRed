@@ -3,13 +3,17 @@
   <search-box></search-box>
   <hr class="text-white" />
   <div class="list-group list-reset">
-    @for (tag of tagsHistory; track tag) {
+    @for (tag of tagsHistory; track tag; let even = $even, odd = $odd) {
 
     <button
       class="list-group-item list-group-item-action text-center"
+      [ngClass]="{
+        'list-group-item-dark': even,
+        'list-group-item-light': odd
+      }"
       (click)="onClick(tag)"
     >
-      {{ tagsHistory.length > 0 ? tag : "No tags" }}
+      {{ tag | titlecase }}
     </button>
     }
   </div>
