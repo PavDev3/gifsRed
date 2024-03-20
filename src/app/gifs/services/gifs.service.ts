@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { _apiUrl, _apikey } from '../../../../environments/environment';
+import { Gif, SearchResponse } from '../interfaces/gifs.interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class GifsService {
   private http = inject(HttpClient);
   private currentTagHistory: string[] = [];
+  public gifs: Gif[] = [];
 
   // Array Tags History
   get tagsHistory(): string[] {
@@ -31,8 +33,11 @@ export class GifsService {
     if (tag.length <= 2) return;
     this.organizeTagsHistory(tag);
     this.http
-      .get(`${_apiUrl}${_apikey}&q=${tag}&limit=10`)
-      .subscribe((response) => console.log(response));
+      .get<SearchResponse>(`${_apiUrl}${_apikey}&q=${tag}&limit=10`)
+      .subscribe((response) => {
+        this.gifs = response.data;
+        console.log({ gifs: this.gifs });
+      });
     this.currentTagHistory.unshift(tag);
   }
 }
