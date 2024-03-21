@@ -28,7 +28,7 @@ export class GifsService {
 
   constructor() {}
 
-  // Search Tag
+  // Search Tag fetch
   async searchTag(tag: string) {
     if (tag.length <= 2) return;
     this.organizeTagsHistory(tag);
