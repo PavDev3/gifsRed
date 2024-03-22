@@ -36,7 +36,6 @@ export class GifsService {
       .get<SearchResponse>(`${_apiUrl}${_apikey}&q=${tag}&limit=10`)
       .subscribe((response) => {
         this.gifList = response.data;
-        console.log({ gifs: this.gifList });
       });
     this.currentTagHistory.unshift(tag);
   }
