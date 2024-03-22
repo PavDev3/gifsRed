@@ -1,9 +1,12 @@
 <div class="row m-2">
-  <div class="col-md4 col-sm3">
+  @for (gif of gifs; track gif) {
+
+  <div class="col-md3 col-sm6">
     <div class="card mb-2 text-center bg-dark">
       <div class="card-body text-white">
-        <p class="card-text">Description</p>
+        <p class="card-text">{{ gif.title }}</p>
       </div>
     </div>
   </div>
+  }
 </div>
