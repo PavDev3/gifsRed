@@ -7,7 +7,7 @@ import { Gif, SearchResponse } from '../interfaces/gifs.interfaces';
 export class GifsService {
   private http = inject(HttpClient);
   private currentTagHistory: string[] = [];
-  public gifs: Gif[] = [];
+  public gifList: Gif[] = [];
 
   // Array Tags History
   get tagsHistory(): string[] {
@@ -35,8 +35,8 @@ export class GifsService {
     this.http
       .get<SearchResponse>(`${_apiUrl}${_apikey}&q=${tag}&limit=10`)
       .subscribe((response) => {
-        this.gifs = response.data;
-        console.log({ gifs: this.gifs });
+        this.gifList = response.data;
+        console.log({ gifs: this.gifList });
       });
     this.currentTagHistory.unshift(tag);
   }
