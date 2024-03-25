@@ -9,6 +9,10 @@ export class GifsService {
   private currentTagHistory: string[] = [];
   public gifList: Gif[] = [];
 
+  constructor() {
+    this.loadLocalStorage();
+  }
+
   // Array Tags History
   get tagsHistory(): string[] {
     return [...this.currentTagHistory];
@@ -27,11 +31,16 @@ export class GifsService {
     this.saveLocalStore();
   }
 
+  // Save Local Storage
   private saveLocalStore() {
     localStorage.setItem('tagsHistory', JSON.stringify(this.currentTagHistory));
   }
+  //Load Local Storage
+  private loadLocalStorage() {
+    if (!localStorage.getItem('tagsHistory')) return;
 
-  constructor() {}
+    this.currentTagHistory = JSON.parse(localStorage.getItem('tagsHistory')!);
+  }
 
   // Search Tag fetch
   async searchTag(tag: string) {
