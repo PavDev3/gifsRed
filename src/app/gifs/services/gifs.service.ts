@@ -11,7 +11,6 @@ export class GifsService {
 
   constructor() {
     this.loadLocalStorage();
-    console.log(this.currentTagHistory);
   }
 
   // Array Tags History
