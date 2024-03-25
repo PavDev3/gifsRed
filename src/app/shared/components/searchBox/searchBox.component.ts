@@ -8,7 +8,7 @@ import { GifsService } from '../../../gifs/services/gifs.service';
     <input
       type="text"
       class="form-control my-2"
-      placeholder="Search Gifs..."
+      placeholder="Search..."
       (keyup.enter)="searchTag()"
       #newTag
     />
