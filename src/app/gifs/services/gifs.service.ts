@@ -24,6 +24,11 @@ export class GifsService {
       this.currentTagHistory.splice(index, 1);
     }
     this.currentTagHistory = this.tagsHistory.splice(0, 9);
+    this.saveLocalStore();
+  }
+
+  private saveLocalStore() {
+    localStorage.setItem('tagsHistory', JSON.stringify(this.currentTagHistory));
   }
 
   constructor() {}
