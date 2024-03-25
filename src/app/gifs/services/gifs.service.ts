@@ -36,10 +36,14 @@ export class GifsService {
     localStorage.setItem('tagsHistory', JSON.stringify(this.currentTagHistory));
   }
   //Load Local Storage
+  // Load Local Storage
   private loadLocalStorage() {
-    if (!localStorage.getItem('tagsHistory')) return;
-
-    this.currentTagHistory = JSON.parse(localStorage.getItem('tagsHistory')!);
+    if (
+      typeof localStorage !== 'undefined' &&
+      localStorage.getItem('tagsHistory')
+    ) {
+      this.currentTagHistory = JSON.parse(localStorage.getItem('tagsHistory')!);
+    }
   }
 
   // Search Tag fetch
