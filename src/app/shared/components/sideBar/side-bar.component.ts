@@ -18,6 +18,6 @@ export class SideBarComponent {
   }
 
   onClick(tag: string) {
-    console.log(tag);
+    this.GifsService.searchTag(tag);
   }
 }
