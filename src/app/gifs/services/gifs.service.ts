@@ -9,6 +9,7 @@ export class GifsService {
   private http = inject(HttpClient);
   private currentTagHistory: string[] = [];
   public gifList: Gif[] = [];
+  private apiKey = environment.apiKey;
 
   constructor() {
     this.loadLocalStorage();
@@ -52,7 +53,7 @@ export class GifsService {
     this.organizeTagsHistory(tag);
     this.http
       .get<SearchResponse>(
-        `${environment.apiUrl}${environment.apiKey}&q=${tag}&limit=12`
+        `${environment.apiUrl}${this.apiKey}&q=${tag}&limit=12`
       )
       .subscribe((response) => {
         this.gifList = response.data;
