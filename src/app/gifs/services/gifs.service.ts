@@ -51,7 +51,7 @@ export class GifsService {
     this.organizeTagsHistory(tag);
     this.http
       .get<SearchResponse>(
-        `${environment.apiUrl}${environment.apikey}&q=${tag}&limit=12`
+        `${environment.apiUrl}${environment.apiKey}&q=${tag}&limit=12`
       )
       .subscribe((response) => {
         this.gifList = response.data;
