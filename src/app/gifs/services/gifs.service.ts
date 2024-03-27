@@ -52,9 +52,7 @@ export class GifsService {
     if (tag.length <= 2) return;
     this.organizeTagsHistory(tag);
     this.http
-      .get<SearchResponse>(
-        `${environment.apiUrl}${environment.apiKey}&q=${tag}&limit=12`
-      )
+      .get<SearchResponse>(`${environment.apiUrl}${apiKey}&q=${tag}&limit=12`)
       .subscribe((response) => {
         this.gifList = response.data;
       });
