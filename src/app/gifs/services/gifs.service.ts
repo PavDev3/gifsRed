@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { Gif, SearchResponse } from '../interfaces/gifs.interfaces';
 
+const apiKey = environment.apiKey;
 @Injectable({ providedIn: 'root' })
 export class GifsService {
   private http = inject(HttpClient);
@@ -50,9 +51,7 @@ export class GifsService {
     if (tag.length <= 2) return;
     this.organizeTagsHistory(tag);
     this.http
-      .get<SearchResponse>(
-        `${environment.apiUrl}${environment.apiKey}&q=${tag}&limit=12`
-      )
+      .get<SearchResponse>(`${environment.apiUrl}${apiKey}&q=${tag}&limit=12`)
       .subscribe((response) => {
         this.gifList = response.data;
       });
