@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { _apiUrl, _apikey } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { Gif, SearchResponse } from '../interfaces/gifs.interfaces';
 
 @Injectable({ providedIn: 'root' })
@@ -50,7 +50,9 @@ export class GifsService {
     if (tag.length <= 2) return;
     this.organizeTagsHistory(tag);
     this.http
-      .get<SearchResponse>(`${_apiUrl}${_apikey}&q=${tag}&limit=12`)
+      .get<SearchResponse>(
+        `${environment.apiUrl}${environment.apikey}&q=${tag}&limit=12`
+      )
       .subscribe((response) => {
         this.gifList = response.data;
       });
