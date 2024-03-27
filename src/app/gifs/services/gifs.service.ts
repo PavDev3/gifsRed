@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
-import { environment } from '../../../../environments/environment.prod';
+import { environment } from '../../../environments/environment.prod';
 import { Gif, SearchResponse } from '../interfaces/gifs.interfaces';
 
 const apiKey = environment.apiKey;
